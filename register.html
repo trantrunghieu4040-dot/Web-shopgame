@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đăng ký — GameStore</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">🎮 Game<span>Store</span></div>
+    <div class="nav-links">
+      <a href="index.html">Cửa hàng</a>
+    </div>
+  </nav>
+
+  <!-- FORM ĐĂNG KÝ -->
+  <div class="auth-wrapper">
+    <div class="auth-box">
+      <h1>📝 Đăng ký</h1>
+      <p>Tạo tài khoản GameStore miễn phí!</p>
+
+      <form onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label>Tên đăng nhập</label>
+          <input type="text" id="username" placeholder="Ít nhất 3 ký tự..." autocomplete="username"/>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="example@email.com" autocomplete="email"/>
+        </div>
+        <div class="form-group">
+          <label>Mật khẩu</label>
+          <input type="password" id="password" placeholder="Ít nhất 6 ký tự..." autocomplete="new-password"/>
+        </div>
+        <div class="form-group">
+          <label>Xác nhận mật khẩu</label>
+          <input type="password" id="confirmPassword" placeholder="Nhập lại mật khẩu..." autocomplete="new-password"/>
+        </div>
+        <div class="error-msg" id="errorMsg"></div>
+        <div class="success-msg" id="successMsg"></div>
+        <button type="submit" class="auth-btn">Tạo tài khoản</button>
+      </form>
+
+      <div class="auth-switch">
+        Đã có tài khoản? <a href="login.html">Đăng nhập</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

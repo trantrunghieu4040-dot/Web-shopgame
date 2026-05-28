@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GameStore — Trang chủ</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">🎮 Game<span>Store</span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Cửa hàng</a>
+      <a href="cart.html" class="cart-icon">
+        🛒 <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+      <div id="navAuth" style="display:flex;align-items:center;gap:10px">
+        <a href="login.html" class="btn-login">Đăng nhập</a>
+        <a href="register.html" style="color:var(--text2);font-size:0.85rem">Đăng ký</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>🎮 Khám phá thế giới game</h1>
+    <p>Hàng nghìn tựa game đang chờ bạn. Tìm ngay trò chơi yêu thích!</p>
+    <div class="hero-search">
+      <input type="text" id="searchInput" placeholder="Tìm kiếm game..."/>
+      <button id="searchBtn">🔍 Tìm</button>
+    </div>
+  </div>
+
+  <!-- GAME LIST -->
+  <div class="section">
+    <div class="section-title">Tất cả game</div>
+    <div class="filter-tabs" id="filterTabs"></div>
+    <div class="game-grid" id="gameGrid"></div>
+  </div>
+
+  <footer>© 2024 GameStore. Đồ án môn Nhập môn Lập trình Web.</footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
