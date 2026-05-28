@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đăng nhập — GameStore</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo">🎮 Game<span>Store</span></a>
+    <div class="nav-links">
+      <a href="index.html">Cửa hàng</a>
+    </div>
+  </nav>
+
+  <!-- FORM ĐĂNG NHẬP -->
+  <div class="auth-wrapper">
+    <div class="auth-box">
+      <h1>🔐 Đăng nhập</h1>
+      <p>Chào mừng bạn quay lại GameStore!</p>
+
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Tên đăng nhập</label>
+          <input type="text" id="username" placeholder="Nhập tên đăng nhập..." autocomplete="username"/>
+        </div>
+        <div class="form-group">
+          <label>Mật khẩu</label>
+          <input type="password" id="password" placeholder="Nhập mật khẩu..." autocomplete="current-password"/>
+        </div>
+        <div class="error-msg" id="errorMsg"></div>
+        <button type="submit" class="auth-btn">Đăng nhập</button>
+      </form>
+
+      <div class="auth-switch">
+        Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
