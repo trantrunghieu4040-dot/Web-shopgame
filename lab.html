@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lab Thực Hành — GameStore</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .lab-wrapper {
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .lab-intro {
+      color: var(--text2);
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .lab-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .lab-card:hover { border-color: var(--accent2); }
+
+    .lab-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lab-header-left { display: flex; align-items: center; gap: 14px; }
+    .lab-number {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .lab-title { font-weight: 600; color: #fff; font-size: 1rem; }
+    .lab-desc-short { font-size: 0.8rem; color: var(--text2); margin-top: 3px; }
+    .lab-arrow {
+      color: var(--text2);
+      font-size: 1rem;
+      transition: transform 0.3s;
+    }
+    .lab-card.open .lab-arrow { transform: rotate(180deg); }
+
+    .lab-body {
+      display: none;
+      padding: 0 22px 18px;
+      border-top: 1px solid var(--border);
+    }
+    .lab-card.open .lab-body { display: block; }
+
+    .sub-lab-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .sub-lab-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg2);
+      border-radius: 7px;
+      padding: 10px 16px;
+      transition: background 0.2s;
+    }
+    .sub-lab-item:hover { background: #2f5572; }
+    .sub-lab-name {
+      font-size: 0.9rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sub-lab-name .icon { font-size: 1rem; }
+    .btn-open-lab {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 5px 14px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-open-lab:hover { background: #1587d6; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo">🎮 Game<span>Store</span></a>
+    <div class="nav-links">
+      <a href="index.html">Cửa hàng</a>
+      <a href="lab.html" style="color:#fff;font-weight:600">Lab Thực Hành</a>
+      <a href="cart.html" class="cart-icon">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+      <a href="login.html" class="btn-login">Đăng nhập</a>
+    </div>
+  </nav>
+
+  <div class="lab-wrapper">
+    <div class="section-title">🧪 Lab Thực Hành</div>
+    <p class="lab-intro">Danh sách các bài lab thực hành. Nhấn vào từng lab để xem các trang con, sau đó bấm <strong>Mở</strong> để truy cập.</p>
+
+    <div id="labList"></div>
+  </div>
+
+  <footer>© 2024 GameStore. Đồ án môn Nhập môn Lập trình Web.</footer>
+
+  <script>
+    // ── CẤU HÌNH LAB ── đồng bộ với thư mục lab-thuchanh
+    const labs = [
+      {
+        id: 1,
+        title: "Lab 1",
+        desc: "HTML cơ bản và ví dụ thực hành",
+        subs: [
+          { name: "Trang chính Lab 1", file: "Lab1/Vi_du/index.html" },
+          { name: "Lab1 Bài 3", file: "Lab1/Vi_du/lab1_bai3.html" },
+          { name: "Lab1 Bài 4", file: "Lab1/Vi_du/lab1_bai4.html" }
+        ]
+      },
+      {
+        id: 2,
+        title: "Lab 2",
+        desc: "HTML nâng cao, bảng và bố cục",
+        subs: [
+          { name: "Lab2 Bài 1", file: "Lab2/Lab2/lab02_bai1.html" },
+          { name: "Lab2 Bài 2", file: "Lab2/Lab2/lab02_bai2.html" },
+          { name: "Lab2 Khung & bảng", file: "Lab2/Lab2/lab02_khung_table.html" },
+          { name: "Ví dụ Lab2", file: "Lab2/Lab2/Vi_du_Lab01/index.html" }
+        ]
+      },
+      {
+        id: 3,
+        title: "Lab 3",
+        desc: "JavaScript / xử lý phía server và ví dụ",
+        subs: [
+          { name: "Ví dụ Lab3", file: "Lab3/Lab03/Vi_du/index.html" },
+          { name: "Ví dụ Lab3.1", file: "Lab3/Lab03/Vi_du_Lab01/index.html" },
+          { name: "Xử lý Lab3 (PHP)", file: "Lab3/xl_lab03_bai3.php" }
+        ]
+      },
+      {
+        id: 4,
+        title: "Lab 4",
+        desc: "HTML/CSS nâng cao và thực hành",
+        subs: [
+          { name: "Ví dụ Lab4", file: "Lab4/Lab04/Vi_du/index.html" }
+        ]
+      },
+      {
+        id: 5,
+        title: "Lab 5",
+        desc: "Layout, menu và demo giao diện",
+        subs: [
+          { name: "Ví dụ Lab5", file: "Lab5/Lab05/Vi_du/index.html" },
+          { name: "Bài 2 Lab5", file: "Lab5/Lab05/Bai_2/index.html" },
+          { name: "Menu Lab5", file: "Lab5/Lab05/menulap5/lab05_menu.html" }
+        ]
+      },
+      {
+        id: 6,
+        title: "Lab 6",
+        desc: "Thiết kế giao diện nâng cao",
+        subs: [
+          { name: "Ví dụ Lab6", file: "Lab6/Lab06/Vi_du/index.html" },
+          { name: "Bài 1 Lab6", file: "Lab6/Lab06/Bai_1/index.html" },
+          { name: "Bài 2 minh họa", file: "Lab6/Lab06/Bai_2_Minh_hoa_layout/index.html" }
+        ]
+      },
+      {
+        id: 7,
+        title: "Lab 7",
+        desc: "Demo website và responsive",
+        subs: [
+          { name: "Ví dụ Lab7", file: "Lab7/Lab07/Vi_du/index.html" },
+          { name: "Demo bài 2", file: "Lab7/Lab07/demo_bai_2/index.html" }
+        ]
+      }
+    ];
+
+    function renderLabs() {
+      const container = document.getElementById("labList");
+      container.innerHTML = labs.map(lab => `
+        <div class="lab-card" id="lab-${lab.id}">
+          <div class="lab-header" onclick="toggleLab(${lab.id})">
+            <div class="lab-header-left">
+              <span class="lab-number">Lab ${lab.id}</span>
+              <div>
+                <div class="lab-title">${lab.title}</div>
+                <div class="lab-desc-short">${lab.desc}</div>
+              </div>
+            </div>
+            <span class="lab-arrow">▼</span>
+          </div>
+          <div class="lab-body">
+            <div class="sub-lab-list">
+              ${lab.subs.map(sub => `
+                <div class="sub-lab-item">
+                  <span class="sub-lab-name"><span class="icon">📄</span>${sub.name}</span>
+                  <button class="btn-open-lab" onclick="openLab('${sub.file}')">🔗 Mở</button>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function toggleLab(id) {
+      const card = document.getElementById("lab-" + id);
+      card.classList.toggle("open");
+    }
+
+    function openLab(file) {
+      window.open(encodeURI("lab-thuchanh/" + file), "_blank");
+    }
+
+    // Cart badge
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cartBadge").textContent = cart.length;
+
+    renderLabs();
+  </script>
+</body>
+</html>
