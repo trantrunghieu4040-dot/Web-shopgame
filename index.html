@@ -4,15 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GameStore — Trang chủ</title>
+  <base href="./">
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
   <!-- NAVBAR -->
   <nav>
-    <div class="nav-logo">🎮 Game<span>Store</span></div>
+    <a href="index.html" class="nav-logo">🎮 Game<span>Store</span></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Cửa hàng</a>
+      <a href="lab.html">Lab Thực Hành</a>
       <a href="cart.html" class="cart-icon">
         🛒 <span class="cart-badge" id="cartBadge">0</span>
       </a>
@@ -43,8 +45,27 @@
   <footer>© 2026 GameStore. Đồ án môn Thực Hành Nhập môn Lập trình Web.</footer>
 
   <div class="toast" id="toast"></div>
+  <div id="jsErrorMessage" style="display:none;position:fixed;bottom:0;left:0;width:100%;background:#e74c3c;color:#fff;padding:12px;text-align:center;z-index:9999;font-size:0.95rem;"></div>
 
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
+  <script>
+    window.addEventListener("error", event => {
+      console.error("JS error:", event.error || event.message);
+      const msg = document.getElementById("jsErrorMessage");
+      if (msg) {
+        msg.textContent = "Lỗi JavaScript xảy ra. Mở Console để kiểm tra.";
+        msg.style.display = "block";
+      }
+    });
+    window.addEventListener("unhandledrejection", event => {
+      console.error("Unhandled promise rejection:", event.reason);
+      const msg = document.getElementById("jsErrorMessage");
+      if (msg) {
+        msg.textContent = "Lỗi JavaScript xảy ra. Mở Console để kiểm tra.";
+        msg.style.display = "block";
+      }
+    });
+  </script>
+  <script defer src="js/data.js"></script>
+  <script defer src="js/main.js"></script>
 </body>
 </html>
