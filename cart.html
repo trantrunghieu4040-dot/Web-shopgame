@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Giỏ hàng — GameStore</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo">🎮 Game<span>Store</span></a>
+    <div class="nav-links">
+      <a href="index.html">Cửa hàng</a>
+      <a href="cart.html" class="cart-icon">
+        🛒 <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+      <a href="login.html" class="btn-login">Đăng nhập</a>
+    </div>
+  </nav>
+
+  <!-- GIỎ HÀNG -->
+  <div class="cart-wrapper">
+    <h1>🛒 Giỏ hàng của bạn</h1>
+    <div id="cartItems"></div>
+
+    <div class="cart-summary" id="cartSummary" style="display:none">
+      <div class="total">Tổng cộng: <span id="cartTotal">0 ₫</span></div>
+      <button class="btn-checkout" onclick="checkout()">💳 Thanh toán ngay</button>
+      <div style="margin-top:12px;text-align:center">
+        <a href="index.html" style="color:var(--text2);font-size:0.85rem">← Tiếp tục mua sắm</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2024 GameStore. Đồ án môn Nhập môn Lập trình Web.</footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>
